@@ -11,19 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
+        /* Exact Brand Colors Extracted from Logo */
         :root {
-            --primary-bg: #0d1b2a;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --accent: #e0e1dd;
-            --success: #2ecc71;
-            --text-main: #ffffff;
+            --fd-blue: #30A9FE;
+            --fd-green: #76D124;
+            --fd-red: #FF352C;
+            --fd-yellow: #F4CD16;
+            --bg-color: #F4F7F6;
+            --text-main: #2C3E50;
+            --text-muted: #7F8C8D;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            background: var(--bg-color);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -31,16 +34,21 @@
             align-items: center;
         }
 
-        header {
+        .brand-strip {
             width: 100%;
-            padding: 30px 0;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            height: 6px;
+            background: linear-gradient(to right, var(--fd-green) 25%, var(--fd-blue) 25% 50%, var(--fd-red) 50% 75%, var(--fd-yellow) 75%);
         }
 
-        h1 { margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e0e1dd; }
+        header {
+            width: 100%;
+            padding: 30px 0 20px 0;
+            text-align: center;
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        h1 { margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); }
 
         .main-content {
             flex-grow: 1;
@@ -53,64 +61,73 @@
         }
 
         .verification-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 50px 40px;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
             width: 100%;
             max-width: 500px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
         }
 
-        .verification-card h2 { margin-top: 0; font-size: 1.4rem; margin-bottom: 25px; font-weight: 600; }
+        .verification-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(to right, var(--fd-blue), var(--fd-green));
+        }
+
+        .verification-card h2 { margin-top: 0; font-size: 1.3rem; margin-bottom: 25px; font-weight: 600; color: var(--text-main); }
 
         input[type="text"] {
-            width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.2); color: white; border-radius: 10px; font-size: 1rem;
+            width: 100%; padding: 15px; margin-bottom: 20px; 
+            border: 2px solid #e0e0e0;
+            background: #fdfdfd; color: var(--text-main); border-radius: 8px; font-size: 1rem;
             font-family: inherit; box-sizing: border-box; outline: none; text-align: center; letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus { border-color: #415a77; }
+        input[type="text"]:focus { border-color: var(--fd-blue); box-shadow: 0 0 8px rgba(48, 169, 254, 0.2); }
 
         button {
-            width: 100%; padding: 15px; border: none; border-radius: 10px; background: #778da9;
+            width: 100%; padding: 15px; border: none; border-radius: 8px; background: var(--fd-blue);
             color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s;
         }
-        button:hover { background: #415a77; }
+        button:hover { background: #268bd2; }
 
-        /* Custom styling for the new manual download button */
         .download-btn {
-            background: #27ae60;
+            background: var(--fd-green);
             margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            box-shadow: 0 4px 15px rgba(118, 209, 36, 0.3);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
-        .download-btn:hover { background: #219653; }
-        .god-btn { background: #8e44ad; box-shadow: 0 4px 15px rgba(142, 68, 173, 0.4); }
-        .god-btn:hover { background: #732d91; }
+        .download-btn:hover { background: #62b01d; }
+        
+        .god-btn { background: var(--fd-red); box-shadow: 0 4px 15px rgba(255, 53, 44, 0.3); }
+        .god-btn:hover { background: #d92d25; }
 
-        #result-box { margin-top: 25px; padding: 20px; border-radius: 10px; display: none; font-size: 1.1rem; line-height: 1.6; animation: fadeIn 0.5s ease; }
-        .success { background: rgba(46, 204, 113, 0.2); border-left: 5px solid #2ecc71; }
-        .error { background: rgba(231, 76, 60, 0.2); border-left: 5px solid #e74c3c; }
-        .god-mode { background: rgba(155, 89, 182, 0.2); border-left: 5px solid #9b59b6; }
+        #result-box { margin-top: 25px; padding: 20px; border-radius: 8px; display: none; font-size: 1.1rem; line-height: 1.6; animation: fadeIn 0.4s ease; color: var(--text-main); }
+        .success { background: rgba(118, 209, 36, 0.1); border-left: 5px solid var(--fd-green); }
+        .error { background: rgba(255, 53, 44, 0.1); border-left: 5px solid var(--fd-red); }
+        .god-mode { background: rgba(244, 205, 22, 0.15); border-left: 5px solid var(--fd-yellow); }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        footer { width: 100%; padding: 20px 0; text-align: center; background: rgba(0, 0, 0, 0.4); margin-top: auto; }
-        .logo { max-width: 180px; height: auto; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5)); }
+        footer { width: 100%; padding: 30px 0; text-align: center; background: #ffffff; margin-top: auto; border-top: 1px solid #eeeeee; }
+        
+        /* White background added to ensure JPGs without transparency look clean */
+        .logo { max-width: 220px; height: auto; background-color: white; }
     </style>
 </head>
 <body>
 
+    <div class="brand-strip"></div>
+
     <header>
         <h1>Dv.Haresh Foundation</h1>
-        <div style="font-size: 0.9rem; letter-spacing: 1px; color: #778da9; margin-top: 5px;">CERTIFICATION VERIFICATION</div>
+        <div style="font-size: 0.9rem; letter-spacing: 2px; color: var(--text-muted); margin-top: 5px; font-weight: 600;">CERTIFICATION REGISTRY</div>
     </header>
 
     <div class="main-content">
@@ -124,8 +141,8 @@
     </div>
 
     <footer>
-        <!-- MUST have id="brand-logo" for the PDF generator to find it -->
-        <img src="logo.png" alt="Dv.Haresh Foundation Logo" class="logo" id="brand-logo" crossorigin="anonymous">
+        <!-- Changed to logo.jpg -->
+        <img src="logo.jpg" alt="Dv.Haresh Foundation Logo" class="logo" id="brand-logo" crossorigin="anonymous">
     </footer>
 
     <script>
@@ -164,10 +181,9 @@
                 return;
             }
 
-            // GOD MODE
             if (inputId === "GOD") {
                 resultBox.innerHTML = `
-                    <strong>ADMIN ACCESS GRANTED.</strong><br>
+                    <strong style="color: var(--fd-red);">ADMIN ACCESS GRANTED.</strong><br>
                     Complete database roster is ready for extraction.
                     <button class="download-btn god-btn" onclick="generateGodModePDF()">⬇ Download Master Database</button>
                 `;
@@ -175,7 +191,6 @@
                 return;
             }
 
-            // NORMAL VERIFICATION
             const candidateRow = globalData.find(row => row[0] && row[0].trim() === inputId);
 
             if (candidateRow) {
@@ -184,39 +199,41 @@
                 const course = candidateRow[3];
 
                 resultBox.innerHTML = `
-                    <div style="font-size: 2rem; margin-bottom: 10px;">✓</div>
+                    <div style="font-size: 2.5rem; margin-bottom: 5px; color: var(--fd-green);">✓</div>
                     <strong>AUTHENTICATED</strong><br><br>
                     Yes, <strong>${name}</strong> is a verified individual who has successfully completed the 2 hrs masterclass in <strong>${course}</strong> on ${date}.
                     <br>
-                    <!-- Trigger manual download via button, passing the ID -->
-                    <button class="download-btn" onclick="generateNormalPDF('${inputId}')">⬇ Download Official Certificate</button>
+                    <button class="download-btn" onclick="generateNormalPDF('${inputId}')">⬇ Download Official Document</button>
                 `;
                 resultBox.classList.add('success');
             } else {
-                resultBox.innerHTML = "<strong>NOT FOUND</strong><br>This certificate ID does not exist in our secure registry.";
+                resultBox.innerHTML = "<strong style='color: var(--fd-red);'>NOT FOUND</strong><br>This certificate ID does not exist in our secure registry.";
                 resultBox.classList.add('error');
             }
         }
 
-        // --- NEW: LOGO EXTRACTION ENGINE ---
+        // --- UPDATED LOGO EXTRACTION ENGINE FOR JPG ---
         function getLogoData() {
             try {
                 const img = document.getElementById('brand-logo');
                 if (!img || !img.complete || img.naturalWidth === 0) return null;
                 
-                // Draw logo to an invisible canvas to extract raw image data for PDF
                 const canvas = document.createElement('canvas');
                 canvas.width = img.naturalWidth;
                 canvas.height = img.naturalHeight;
                 const ctx = canvas.getContext('2d');
+                
+                // Draw a white background first (since JPG doesn't support transparency)
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(img, 0, 0);
                 
                 return {
-                    dataUrl: canvas.toDataURL('image/png'),
+                    // Force JPEG format and apply 0.8 quality compression
+                    dataUrl: canvas.toDataURL('image/jpeg', 0.8),
                     aspectRatio: img.naturalWidth / img.naturalHeight
                 };
             } catch (err) {
-                console.warn("Could not load logo for PDF (likely due to local file security restrictions).");
                 return null;
             }
         }
@@ -231,20 +248,18 @@
                 doc.setPage(i);
                 
                 if (logo) {
-                    // Calculate perfectly scaled logo dimensions for the PDF
-                    const imgHeight = 12; // Height in mm
+                    const imgHeight = 16; 
                     const imgWidth = imgHeight * logo.aspectRatio; 
                     
-                    // Paste Logo
-                    doc.addImage(logo.dataUrl, 'PNG', (pageWidth - imgWidth) / 2, pageHeight - 24, imgWidth, imgHeight);
-                    // Paste Text directly under it
+                    // Changed to insert as JPEG
+                    doc.addImage(logo.dataUrl, 'JPEG', (pageWidth - imgWidth) / 2, pageHeight - 26, imgWidth, imgHeight);
+                    
                     doc.setFontSize(8);
-                    doc.setTextColor(150);
-                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 8, { align: 'center' });
+                    doc.setTextColor(100);
+                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 6, { align: 'center' });
                 } else {
-                    // Fallback if logo fails to load
                     doc.setFontSize(10);
-                    doc.setTextColor(150);
+                    doc.setTextColor(100);
                     doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 10, { align: 'center' });
                 }
             }
@@ -262,17 +277,16 @@
             const date = candidateRow[2];
             const course = candidateRow[3];
 
-            // PAGE 1: BONAFIDE
             doc.setFontSize(22);
-            doc.setTextColor(20, 40, 80);
+            doc.setTextColor(48, 169, 254); 
             doc.text("BONAFIDE CERTIFICATE", 105, 30, { align: 'center' });
             
             doc.setFontSize(12);
-            doc.setTextColor(50);
-            doc.text(`This document verifies the credentials for ID: ${id}`, 105, 45, { align: 'center' });
+            doc.setTextColor(80);
+            doc.text(`This document verifies the credentials for ID: ${id}`, 105, 42, { align: 'center' });
 
             doc.autoTable({
-                startY: 60,
+                startY: 55,
                 head: [['Field', 'Verified Detail']],
                 body: [
                     ['Candidate Name', name],
@@ -282,17 +296,17 @@
                     ['Status', 'Fully Verified & Authentic']
                 ],
                 theme: 'grid',
-                headStyles: { fillColor: [27, 38, 59], halign: 'center' },
+                headStyles: { fillColor: [48, 169, 254], halign: 'center' },
                 columnStyles: { 0: { fontStyle: 'bold', cellWidth: 60 } }
             });
 
-            // PAGE 2: ROSTER
             doc.addPage();
             doc.setFontSize(18);
-            doc.setTextColor(20, 40, 80);
+            doc.setTextColor(118, 209, 36); 
             doc.text(`FULL EVENT ROSTER: ${course}`, 14, 20);
             
             doc.setFontSize(10);
+            doc.setTextColor(80);
             doc.text("A complete list of all verified candidates for this event.", 14, 28);
 
             doc.autoTable({
@@ -300,7 +314,7 @@
                 head: [globalHeaders],
                 body: globalData,
                 theme: 'striped',
-                headStyles: { fillColor: [119, 141, 169] }
+                headStyles: { fillColor: [118, 209, 36] } 
             });
 
             addFooterToPDF(doc);
@@ -312,11 +326,11 @@
             const doc = new jsPDF();
 
             doc.setFontSize(22);
-            doc.setTextColor(155, 89, 182); 
+            doc.setTextColor(255, 53, 44); 
             doc.text("MASTER DATABASE RECORD", 105, 25, { align: 'center' });
             
             doc.setFontSize(12);
-            doc.setTextColor(50);
+            doc.setTextColor(80);
             doc.text(`Generated by Admin | Dv.Haresh Foundation`, 105, 35, { align: 'center' });
 
             doc.autoTable({
@@ -324,7 +338,7 @@
                 head: [globalHeaders],
                 body: globalData,
                 theme: 'grid',
-                headStyles: { fillColor: [155, 89, 182] }
+                headStyles: { fillColor: [255, 53, 44] } 
             });
 
             addFooterToPDF(doc);
