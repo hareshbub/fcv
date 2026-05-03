@@ -8,7 +8,6 @@
     <!-- PDF Generation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    <!-- Google Fonts for High-End Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
@@ -32,7 +31,6 @@
             align-items: center;
         }
 
-        /* Top Header */
         header {
             width: 100%;
             padding: 30px 0;
@@ -42,16 +40,8 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #e0e1dd;
-        }
+        h1 { margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #e0e1dd; }
 
-        /* Centered Verification Card (Glassmorphism) */
         .main-content {
             flex-grow: 1;
             display: flex;
@@ -73,86 +63,47 @@
             max-width: 500px;
             text-align: center;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
         }
 
-        .verification-card h2 {
-            margin-top: 0;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+        .verification-card h2 { margin-top: 0; font-size: 1.4rem; margin-bottom: 25px; font-weight: 600; }
 
-        /* Inputs and Buttons */
         input[type="text"] {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.2);
-            color: white;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-family: inherit;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.3s;
-            text-align: center;
-            letter-spacing: 1px;
+            width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2); color: white; border-radius: 10px; font-size: 1rem;
+            font-family: inherit; box-sizing: border-box; outline: none; text-align: center; letter-spacing: 1px;
         }
 
-        input[type="text"]:focus {
-            border-color: #415a77;
-        }
+        input[type="text"]:focus { border-color: #415a77; }
 
         button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #778da9;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
-            font-family: inherit;
+            width: 100%; padding: 15px; border: none; border-radius: 10px; background: #778da9;
+            color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.3s;
         }
-
         button:hover { background: #415a77; }
-        button:active { transform: scale(0.98); }
 
-        /* Results Box */
-        #result-box {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 10px;
-            display: none;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            animation: fadeIn 0.5s ease;
+        /* Custom styling for the new manual download button */
+        .download-btn {
+            background: #27ae60;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
+        .download-btn:hover { background: #219653; }
+        .god-btn { background: #8e44ad; box-shadow: 0 4px 15px rgba(142, 68, 173, 0.4); }
+        .god-btn:hover { background: #732d91; }
 
+        #result-box { margin-top: 25px; padding: 20px; border-radius: 10px; display: none; font-size: 1.1rem; line-height: 1.6; animation: fadeIn 0.5s ease; }
         .success { background: rgba(46, 204, 113, 0.2); border-left: 5px solid #2ecc71; }
         .error { background: rgba(231, 76, 60, 0.2); border-left: 5px solid #e74c3c; }
         .god-mode { background: rgba(155, 89, 182, 0.2); border-left: 5px solid #9b59b6; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Footer */
-        footer {
-            width: 100%;
-            padding: 20px 0;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.4);
-            margin-top: auto;
-        }
-
-        .logo {
-            max-width: 180px;
-            height: auto;
-            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5));
-        }
+        footer { width: 100%; padding: 20px 0; text-align: center; background: rgba(0, 0, 0, 0.4); margin-top: auto; }
+        .logo { max-width: 180px; height: auto; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.5)); }
     </style>
 </head>
 <body>
@@ -173,7 +124,8 @@
     </div>
 
     <footer>
-        <img src="logo.png" alt="Dv.Haresh Foundation Logo" class="logo" onerror="this.style.display='none'">
+        <!-- MUST have id="brand-logo" for the PDF generator to find it -->
+        <img src="logo.png" alt="Dv.Haresh Foundation Logo" class="logo" id="brand-logo" crossorigin="anonymous">
     </footer>
 
     <script>
@@ -181,18 +133,14 @@
         let globalData = [];
         let globalHeaders = [];
 
-        // 1. Fetch data on load
         async function loadData() {
             try {
                 const response = await fetch(CSV_URL);
                 const text = await response.text();
-                
-                // Parse CSV, removing carriage returns
                 const rows = text.split('\n').map(row => row.replace(/\r/g, '').split(','));
                 globalHeaders = rows[0].map(h => h.trim());
-                globalData = rows.slice(1).filter(row => row.length > 1); // Remove empty lines
+                globalData = rows.slice(1).filter(row => row.length > 1); 
                 
-                // Auto-trigger if URL has ?id=
                 const urlParams = new URLSearchParams(window.location.search);
                 const targetID = urlParams.get('id');
                 if (targetID) {
@@ -204,7 +152,6 @@
             }
         }
 
-        // 2. Main Verification Logic
         function triggerVerification() {
             const inputId = document.getElementById('certId').value.trim();
             const resultBox = document.getElementById('result-box');
@@ -217,15 +164,18 @@
                 return;
             }
 
-            // --- GOD MODE ROUTINE ---
+            // GOD MODE
             if (inputId === "GOD") {
-                resultBox.innerHTML = "<strong>ADMIN ACCESS GRANTED.</strong><br>Downloading complete database roster...";
+                resultBox.innerHTML = `
+                    <strong>ADMIN ACCESS GRANTED.</strong><br>
+                    Complete database roster is ready for extraction.
+                    <button class="download-btn god-btn" onclick="generateGodModePDF()">⬇ Download Master Database</button>
+                `;
                 resultBox.classList.add('god-mode');
-                generateGodModePDF();
                 return;
             }
 
-            // --- NORMAL VERIFICATION ROUTINE ---
+            // NORMAL VERIFICATION
             const candidateRow = globalData.find(row => row[0] && row[0].trim() === inputId);
 
             if (candidateRow) {
@@ -237,29 +187,73 @@
                     <div style="font-size: 2rem; margin-bottom: 10px;">✓</div>
                     <strong>AUTHENTICATED</strong><br><br>
                     Yes, <strong>${name}</strong> is a verified individual who has successfully completed the 2 hrs masterclass in <strong>${course}</strong> on ${date}.
-                    <br><br><small style="color: #778da9;">Generating official documents...</small>
+                    <br>
+                    <!-- Trigger manual download via button, passing the ID -->
+                    <button class="download-btn" onclick="generateNormalPDF('${inputId}')">⬇ Download Official Certificate</button>
                 `;
                 resultBox.classList.add('success');
-                generateNormalPDF(candidateRow);
             } else {
                 resultBox.innerHTML = "<strong>NOT FOUND</strong><br>This certificate ID does not exist in our secure registry.";
                 resultBox.classList.add('error');
             }
         }
 
-        // 3. PDF GENERATION: Helper to add Footer
-        function addFooterToPDF(doc) {
-            const pageCount = doc.internal.getNumberOfPages();
-            for (let i = 1; i <= pageCount; i++) {
-                doc.setPage(i);
-                doc.setFontSize(10);
-                doc.setTextColor(150);
-                doc.text("Official Record - Dv.Haresh Foundation", doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: 'center' });
+        // --- NEW: LOGO EXTRACTION ENGINE ---
+        function getLogoData() {
+            try {
+                const img = document.getElementById('brand-logo');
+                if (!img || !img.complete || img.naturalWidth === 0) return null;
+                
+                // Draw logo to an invisible canvas to extract raw image data for PDF
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                
+                return {
+                    dataUrl: canvas.toDataURL('image/png'),
+                    aspectRatio: img.naturalWidth / img.naturalHeight
+                };
+            } catch (err) {
+                console.warn("Could not load logo for PDF (likely due to local file security restrictions).");
+                return null;
             }
         }
 
-        // 4. PDF GENERATION: Normal User (2 Pages)
-        function generateNormalPDF(candidateRow) {
+        function addFooterToPDF(doc) {
+            const pageCount = doc.internal.getNumberOfPages();
+            const logo = getLogoData();
+            const pageWidth = doc.internal.pageSize.width;
+            const pageHeight = doc.internal.pageSize.height;
+
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                
+                if (logo) {
+                    // Calculate perfectly scaled logo dimensions for the PDF
+                    const imgHeight = 12; // Height in mm
+                    const imgWidth = imgHeight * logo.aspectRatio; 
+                    
+                    // Paste Logo
+                    doc.addImage(logo.dataUrl, 'PNG', (pageWidth - imgWidth) / 2, pageHeight - 24, imgWidth, imgHeight);
+                    // Paste Text directly under it
+                    doc.setFontSize(8);
+                    doc.setTextColor(150);
+                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 8, { align: 'center' });
+                } else {
+                    // Fallback if logo fails to load
+                    doc.setFontSize(10);
+                    doc.setTextColor(150);
+                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 10, { align: 'center' });
+                }
+            }
+        }
+
+        function generateNormalPDF(inputId) {
+            const candidateRow = globalData.find(row => row[0] === inputId);
+            if (!candidateRow) return;
+
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
@@ -268,7 +262,7 @@
             const date = candidateRow[2];
             const course = candidateRow[3];
 
-            // --- PAGE 1: BONAFIDE CERTIFICATE ---
+            // PAGE 1: BONAFIDE
             doc.setFontSize(22);
             doc.setTextColor(20, 40, 80);
             doc.text("BONAFIDE CERTIFICATE", 105, 30, { align: 'center' });
@@ -292,7 +286,7 @@
                 columnStyles: { 0: { fontStyle: 'bold', cellWidth: 60 } }
             });
 
-            // --- PAGE 2: FULL EVENT ROSTER ---
+            // PAGE 2: ROSTER
             doc.addPage();
             doc.setFontSize(18);
             doc.setTextColor(20, 40, 80);
@@ -313,13 +307,12 @@
             doc.save(`${name}_Verification_Record.pdf`);
         }
 
-        // 5. PDF GENERATION: GOD Mode (Full Database)
         function generateGodModePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
             doc.setFontSize(22);
-            doc.setTextColor(155, 89, 182); // Purple Admin Color
+            doc.setTextColor(155, 89, 182); 
             doc.text("MASTER DATABASE RECORD", 105, 25, { align: 'center' });
             
             doc.setFontSize(12);
@@ -338,7 +331,6 @@
             doc.save(`Foundation_Master_Roster.pdf`);
         }
 
-        // Run setup on window load
         window.onload = loadData;
     </script>
 </body>
