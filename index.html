@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dv.Haresh Foundation | Certification Verification</title>
+    <title>Dv.Haresh Foundation | Certification Registry</title>
     
     <!-- PDF Generation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Exact Brand Colors Extracted from Logo */
+        /* Exact Brand Colors */
         :root {
             --fd-blue: #30A9FE;
             --fd-green: #76D124;
@@ -24,58 +24,36 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0; padding: 0;
+            background: var(--bg-color); color: var(--text-main);
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
         }
 
         .brand-strip {
-            width: 100%;
-            height: 6px;
+            width: 100%; height: 6px;
             background: linear-gradient(to right, var(--fd-green) 25%, var(--fd-blue) 25% 50%, var(--fd-red) 50% 75%, var(--fd-yellow) 75%);
         }
 
         header {
-            width: 100%;
-            padding: 30px 0 20px 0;
-            text-align: center;
-            background: #ffffff;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+            width: 100%; padding: 30px 0 20px 0; text-align: center;
+            background: #ffffff; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
         }
 
         h1 { margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); }
 
         .main-content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
+            flex-grow: 1; display: flex; justify-content: center; align-items: center;
+            width: 100%; padding: 20px; box-sizing: border-box;
         }
 
         .verification-card {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
+            background: #ffffff; border-radius: 15px; padding: 40px;
+            width: 100%; max-width: 500px; text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); position: relative; overflow: hidden;
         }
 
         .verification-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
             background: linear-gradient(to right, var(--fd-blue), var(--fd-green));
         }
 
@@ -83,10 +61,8 @@
 
         input[type="text"] {
             width: 100%; padding: 15px; margin-bottom: 20px; 
-            border: 2px solid #e0e0e0;
-            background: #fdfdfd; color: var(--text-main); border-radius: 8px; font-size: 1rem;
-            font-family: inherit; box-sizing: border-box; outline: none; text-align: center; letter-spacing: 1px;
-            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0; background: #fdfdfd; color: var(--text-main); border-radius: 8px; font-size: 1rem;
+            font-family: inherit; box-sizing: border-box; outline: none; text-align: center; letter-spacing: 1px; transition: all 0.3s ease;
         }
 
         input[type="text"]:focus { border-color: var(--fd-blue); box-shadow: 0 0 8px rgba(48, 169, 254, 0.2); }
@@ -97,27 +73,20 @@
         }
         button:hover { background: #268bd2; }
 
-        .download-btn {
-            background: var(--fd-green);
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(118, 209, 36, 0.3);
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
+        .download-btn { background: var(--fd-green); margin-top: 25px; box-shadow: 0 4px 15px rgba(118, 209, 36, 0.3); display: flex; align-items: center; justify-content: center; gap: 10px; }
         .download-btn:hover { background: #62b01d; }
         
         .god-btn { background: var(--fd-red); box-shadow: 0 4px 15px rgba(255, 53, 44, 0.3); }
         .god-btn:hover { background: #d92d25; }
 
-        #result-box { margin-top: 25px; padding: 20px; border-radius: 8px; display: none; font-size: 1.1rem; line-height: 1.6; animation: fadeIn 0.4s ease; color: var(--text-main); }
-        .success { background: rgba(118, 209, 36, 0.1); border-left: 5px solid var(--fd-green); }
-        .error { background: rgba(255, 53, 44, 0.1); border-left: 5px solid var(--fd-red); }
-        .god-mode { background: rgba(244, 205, 22, 0.15); border-left: 5px solid var(--fd-yellow); }
+        #result-box { padding: 20px; border-radius: 8px; display: none; font-size: 1.1rem; line-height: 1.6; animation: fadeIn 0.4s ease; color: var(--text-main); }
+        .success { background: rgba(118, 209, 36, 0.05); border: 2px solid var(--fd-green); }
+        .error { background: rgba(255, 53, 44, 0.05); border: 2px solid var(--fd-red); }
+        .god-mode { background: rgba(244, 205, 22, 0.15); border: 2px solid var(--fd-yellow); }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         footer { width: 100%; padding: 30px 0; text-align: center; background: #ffffff; margin-top: auto; border-top: 1px solid #eeeeee; }
-        
-        /* White background added to ensure JPGs without transparency look clean */
         .logo { max-width: 220px; height: auto; background-color: white; }
     </style>
 </head>
@@ -132,16 +101,20 @@
 
     <div class="main-content">
         <div class="verification-card">
-            <h2>Enter Certificate ID</h2>
-            <input type="text" id="certId" placeholder="e.g. HYPSS-B01" autocomplete="off">
-            <button onclick="triggerVerification()">Verify Credential</button>
             
+            <!-- This section hides completely if scanned via QR -->
+            <div id="input-section">
+                <h2>Enter Certificate ID</h2>
+                <input type="text" id="certId" placeholder="e.g. HYPSS-B01" autocomplete="off">
+                <button onclick="triggerVerification()">Verify Credential</button>
+            </div>
+            
+            <!-- Result Box: Now styled to act as a full standalone splash screen -->
             <div id="result-box"></div>
         </div>
     </div>
 
     <footer>
-        <!-- Changed to logo.jpg -->
         <img src="logo.jpg" alt="Dv.Haresh Foundation Logo" class="logo" id="brand-logo" crossorigin="anonymous">
     </footer>
 
@@ -161,6 +134,8 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const targetID = urlParams.get('id');
                 if (targetID) {
+                    // HIDE the manual input fields so the result is front-and-center
+                    document.getElementById('input-section').style.display = 'none';
                     document.getElementById('certId').value = targetID;
                     triggerVerification();
                 }
@@ -183,7 +158,8 @@
 
             if (inputId === "GOD") {
                 resultBox.innerHTML = `
-                    <strong style="color: var(--fd-red);">ADMIN ACCESS GRANTED.</strong><br>
+                    <div style="font-size: 4rem; margin-bottom: 5px; color: var(--fd-red);">⚙️</div>
+                    <strong style="font-size: 1.5rem; color: var(--fd-red);">ADMIN ACCESS GRANTED</strong><br><br>
                     Complete database roster is ready for extraction.
                     <button class="download-btn god-btn" onclick="generateGodModePDF()">⬇ Download Master Database</button>
                 `;
@@ -199,20 +175,24 @@
                 const course = candidateRow[3];
 
                 resultBox.innerHTML = `
-                    <div style="font-size: 2.5rem; margin-bottom: 5px; color: var(--fd-green);">✓</div>
-                    <strong>AUTHENTICATED</strong><br><br>
+                    <div style="font-size: 4.5rem; margin-bottom: 5px; color: var(--fd-green);">✓</div>
+                    <strong style="font-size: 1.5rem; letter-spacing: 1px;">AUTHENTICATED</strong><br><br>
                     Yes, <strong>${name}</strong> is a verified individual who has successfully completed the 2 hrs masterclass in <strong>${course}</strong> on ${date}.
                     <br>
                     <button class="download-btn" onclick="generateNormalPDF('${inputId}')">⬇ Download Official Document</button>
                 `;
                 resultBox.classList.add('success');
             } else {
-                resultBox.innerHTML = "<strong style='color: var(--fd-red);'>NOT FOUND</strong><br>This certificate ID does not exist in our secure registry.";
+                resultBox.innerHTML = `
+                    <div style="font-size: 4.5rem; margin-bottom: 5px; color: var(--fd-red);">✗</div>
+                    <strong style="font-size: 1.5rem; color: var(--fd-red); letter-spacing: 1px;">NOT FOUND</strong><br><br>
+                    This certificate ID does not exist in our secure registry.
+                `;
                 resultBox.classList.add('error');
             }
         }
 
-        // --- UPDATED LOGO EXTRACTION ENGINE FOR JPG ---
+        // LOGO EXTRACTION
         function getLogoData() {
             try {
                 const img = document.getElementById('brand-logo');
@@ -223,13 +203,11 @@
                 canvas.height = img.naturalHeight;
                 const ctx = canvas.getContext('2d');
                 
-                // Draw a white background first (since JPG doesn't support transparency)
                 ctx.fillStyle = "#ffffff";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(img, 0, 0);
                 
                 return {
-                    // Force JPEG format and apply 0.8 quality compression
                     dataUrl: canvas.toDataURL('image/jpeg', 0.8),
                     aspectRatio: img.naturalWidth / img.naturalHeight
                 };
@@ -247,20 +225,36 @@
             for (let i = 1; i <= pageCount; i++) {
                 doc.setPage(i);
                 
+                // --- NEW PDF DECORATION: 4-Color Brand Strip Line ---
+                const startX = 20;
+                const stripWidth = pageWidth - 40;
+                const segment = stripWidth / 4;
+                const lineY = pageHeight - 48; // Positioned right above the oversized logo
+
+                doc.setLineWidth(1);
+                doc.setDrawColor(118, 209, 36); // Green
+                doc.line(startX, lineY, startX + segment, lineY);
+                doc.setDrawColor(48, 169, 254); // Blue
+                doc.line(startX + segment, lineY, startX + segment * 2, lineY);
+                doc.setDrawColor(255, 53, 44); // Red
+                doc.line(startX + segment * 2, lineY, startX + segment * 3, lineY);
+                doc.setDrawColor(244, 205, 22); // Yellow
+                doc.line(startX + segment * 3, lineY, startX + stripWidth, lineY);
+                
                 if (logo) {
-                    const imgHeight = 16; 
+                    // --- LOGO 2X LARGER ---
+                    const imgHeight = 32; // Was 16, now doubled to 32mm
                     const imgWidth = imgHeight * logo.aspectRatio; 
                     
-                    // Changed to insert as JPEG
-                    doc.addImage(logo.dataUrl, 'JPEG', (pageWidth - imgWidth) / 2, pageHeight - 26, imgWidth, imgHeight);
+                    doc.addImage(logo.dataUrl, 'JPEG', (pageWidth - imgWidth) / 2, pageHeight - 44, imgWidth, imgHeight);
                     
                     doc.setFontSize(8);
-                    doc.setTextColor(100);
-                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 6, { align: 'center' });
+                    doc.setTextColor(150);
+                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 8, { align: 'center' });
                 } else {
                     doc.setFontSize(10);
                     doc.setTextColor(100);
-                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 10, { align: 'center' });
+                    doc.text("Official Record - Dv.Haresh Foundation", pageWidth / 2, pageHeight - 15, { align: 'center' });
                 }
             }
         }
@@ -287,6 +281,7 @@
 
             doc.autoTable({
                 startY: 55,
+                margin: { bottom: 50 }, // Prevents table from overlapping the 2X oversized footer
                 head: [['Field', 'Verified Detail']],
                 body: [
                     ['Candidate Name', name],
@@ -311,6 +306,7 @@
 
             doc.autoTable({
                 startY: 35,
+                margin: { bottom: 50 }, // Protects the footer on roster pages
                 head: [globalHeaders],
                 body: globalData,
                 theme: 'striped',
@@ -335,6 +331,7 @@
 
             doc.autoTable({
                 startY: 50,
+                margin: { bottom: 50 },
                 head: [globalHeaders],
                 body: globalData,
                 theme: 'grid',
